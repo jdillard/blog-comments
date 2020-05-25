@@ -1,0 +1,14 @@
+name: Trigger Netlify Build
+
+on: issue_comment
+
+jobs:
+  build:
+    name: Request Netlify Webhook
+    runs-on: ubuntu-latest
+    steps:
+      - name: Curl request
+        env:
+          NETLIFY_DEPLOY_KEY: ${{ secrets.NETLIFY_DEPLOY_KEY }}
+        run: >
+          curl -X POST -d '{"scripts": "comments"}' https://api.netlify.com/build_hooks/$NETLIFY_DEPLOY_KEY
