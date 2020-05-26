@@ -10,6 +10,6 @@ jobs:
       - name: Curl request
         env:
           NETLIFY_DEPLOY_KEY: ${{ secrets.NETLIFY_DEPLOY_KEY }}
-          ISSUE_ID: ${{ github.event.comment.id }}
+          ISSUE_ID: ${{ github.event.issue.id }}
         run: >
           curl -X POST -d '{"scripts": "comments", "arguments": "'$ISSUE_ID'"}' https://api.netlify.com/build_hooks/$NETLIFY_DEPLOY_KEY
